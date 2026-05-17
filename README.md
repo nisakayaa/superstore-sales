@@ -47,7 +47,7 @@ python src/analysis.py
 
 Bu projeye başlarken sales-analysis ile aynı şey olur diye düşünmüştüm. Ama profitability bambaşka bir bakış açısı — özellikle **"en iyi müşteri kim?"** sorusunun cevabı satış miktarına bakınca farklı, kâr miktarına bakınca farklı çıkıyor. İş dünyasındaki bir karar verici için "kim çok aldı?" yanlış soru, doğru soru **"kim para kazandırdı?"**.
 
-Bir veri analistinin teknik beceri kadar iş perspektifine de sahip olması gerektiğini bu projede çok net gördüm.
+
 
 ## Author
 
