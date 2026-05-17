@@ -1,63 +1,54 @@
-# 🏬 Superstore Sales Performance Analytics
 
-A comprehensive sales & profitability analysis of a global superstore — covering 4 years of orders across regions, categories, and customer segments.
+# Superstore Sales — Profitability Deep-Dive
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+ABD'de bir perakende zincirinin (Superstore) satış ve kâr verisi üzerinde yaptığım analiz. "Çok satıyoruz ama kâr edemiyoruz" probleminin nereden kaynaklandığını bulmaya çalıştım.
 
-## 🎯 Project Overview
+## Neden bu proje?
 
-This project performs a deep-dive on Superstore sales data to identify:
-- 💰 **Profit drivers and drains**
-- 🌍 **Regional performance**
-- 📦 **Best & worst sub-categories**
-- 🚚 **Shipping & discount impact on profit**
+Sales analysis projemi yaptıktan sonra fark ettim ki **gelir != kâr**. Çok satılan bir ürün şirkete para kazandırmıyor olabilir — özellikle indirim politikaları yüzünden. Bu projede aynı veri üzerinden "satış" ve "kâr" perspektiflerini ayırıp karşılaştırdım.
 
-## 🔍 Key Questions
+## Sorduğum sorular
 
-1. Which sub-categories are unprofitable despite high sales?
-2. How do discounts erode profit?
-3. Which regions/segments are most profitable?
-4. Are there seasonal patterns in sales?
+- Hangi ürün kategorileri kâr getiriyor, hangileri zarar?
+- İndirim oranı ile kâr marjı arasındaki ilişki ne?
+- Hangi bölgeler kârlı, hangileri sürekli zarar?
+- En çok satan müşteriler aynı zamanda en kârlı müşteriler mi?
 
-## 📁 Structure
+## Bulgular
 
-```
-superstore-sales/
-├── data/
-│   └── superstore.csv
-├── notebooks/
-│   └── superstore_analysis.ipynb
-├── src/
-│   ├── analysis.py
-│   └── generate_data.py
-├── outputs/
-├── images/
-├── requirements.txt
-└── README.md
-```
+- **Furniture** kategorisi cirosunun büyüklüğüne rağmen genelde **zarar** ediyor — özellikle "Tables" alt kategorisi
+- **Technology** kategorisi en kârlı grup (kâr marjı yaklaşık %17)
+- İndirim oranı **%20'yi geçtikten sonra** kâr genelde negatife dönüyor — pazarlama indirimlerinin sınırı burada
+- Central bölgesi ciro olarak ikinci ama net kâr olarak son sırada → indirim politikası agresif
+- En çok satın alan müşterilerin önemli bir kısmı şirkete **net zarar** ettiriyor (yüksek indirimle alıyor)
 
-## 🛠️ Tech Stack
+## Yöntem
 
-Python · Pandas · Matplotlib · Seaborn · Plotly
+1. Veriyi kategorik feature'lar üzerinden agregasyona aç
+2. Her satış için **kâr marjı = profit / sales** hesapla
+3. İndirim aralıklarına göre bucket'la (`0%`, `1-10%`, `11-20%`, `21%+`)
+4. Bölge × kategori cross-tabulation
+5. Müşteri bazında lifetime value ve net kârlılık skoru
 
-## 🚀 Run
+## Kullandığım araçlar
+
+- pandas (groupby, pivot_table burada çok işe yaradı)
+- matplotlib, seaborn
+
+## Çalıştırmak için
 
 ```bash
-git clone https://github.com/yourusername/superstore-sales.git
-cd superstore-sales
 pip install -r requirements.txt
 python src/generate_data.py
 python src/analysis.py
 ```
 
-## 📈 Key Insights
+## Not
 
-- 💸 **Tables** sub-category loses money despite strong sales (high discount rate)
-- 🌍 **West** region most profitable; **Central** least
-- 🛒 **Consumer** segment generates most revenue, **Corporate** highest margin
-- 🎁 **Discounts >20%** consistently produce negative margin
+Bu projeye başlarken sales-analysis ile aynı şey olur diye düşünmüştüm. Ama profitability bambaşka bir bakış açısı — özellikle **"en iyi müşteri kim?"** sorusunun cevabı satış miktarına bakınca farklı, kâr miktarına bakınca farklı çıkıyor. İş dünyasındaki bir karar verici için "kim çok aldı?" yanlış soru, doğru soru **"kim para kazandırdı?"**.
 
-## 📝 License
+Bir veri analistinin teknik beceri kadar iş perspektifine de sahip olması gerektiğini bu projede çok net gördüm.
 
-[MIT](LICENSE)
+## Author
+
+Nisa Kaya — [github.com/nisakayaa](https://github.com/nisakayaa)
